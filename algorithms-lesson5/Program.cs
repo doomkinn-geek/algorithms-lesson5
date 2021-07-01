@@ -20,7 +20,7 @@ namespace algorithms_lesson5
             Console.WriteLine("DFS:");
             Console.WriteLine(new string('=', 40));
             tree.DFS(tree.Root);
-            Console.WriteLine(new string('=', 40));           
+            Console.WriteLine(new string('=', 40));            
 
             Console.ReadLine();
         }        
