@@ -50,71 +50,46 @@ namespace algorithms_lesson5
         }
     }
 
-    class LinkBinaryTree<T>
+    class BinaryTree<T>
     {
-        private Node<T> root;//Root node
+        private Node<T> root;
         public Node<T> Root
         {
             get { return root; }
         }
 
-        public LinkBinaryTree()
+        public BinaryTree()
         {
             root = null;
         }
 
-        public LinkBinaryTree(T value)
+        public BinaryTree(T value)
         {
             Node<T> p = new Node<T>(value);
             root = p;
         }
-
-        //Three kinds of depth traversal
-
-        //Sequential traversal
-
-        public void InOrder(Node<T> node)
-        {
-            if (root == null)
-                return;
-            if (node != null)
-            {
-                InOrder(node.Left);
-                Console.Write(node.Data);
-                InOrder(node.Right);
-            }
-        }
-
-        //Preorder traversal
-
-        public void PreOrder(Node<T> node)
-        {
-            if (root == null)
-                return;
-            if (node != null)
-            {
-                Console.Write(node.Data);
-                PreOrder(node.Left);
-                PreOrder(node.Right);
-            }
-        }
-
-        //Post order traversal
-
-        public void PostOrder(Node<T> node)
+        
+        public void PrintTree()
         {
             if (root == null)
                 return;
 
-            if (node != null)
-            {
-                PostOrder(node.Left);
-                PostOrder(node.Right);
-                Console.Write(node.Data);
-            }
-        }
+            Console.WriteLine(root.Data);
 
-        //-------Breadth traversal----------Using queues is also known as FIFO
+            Queue<Node<T>> queue = new Queue<Node<T>>();
+            queue.Enqueue(root);
+            while (queue.Count > 0)
+            {
+                Node<T> node = queue.Dequeue();
+                Console.WriteLine(node.Data);
+                if (node.Left != null)
+                    queue.Enqueue(node.Left);
+
+                if (node.Right != null)
+                    queue.Enqueue(node.Right);
+            }
+        }        
+
         public void BFS(Node<T> root)
         {
             if (root == null)
@@ -131,6 +106,25 @@ namespace algorithms_lesson5
 
                 if (node.Right != null)
                     queue.Enqueue(node.Right);
+            }
+        }
+
+        public void DFS(Node<T> root)
+        {
+            if (root == null)
+                return;
+
+            Stack<Node<T>> stack = new Stack<Node<T>>();
+            stack.Push(root);
+            while(stack.Count > 0)
+            {
+                Node<T> node = stack.Pop();
+                Console.WriteLine(node.Data);
+                if (node.Left != null)
+                    stack.Push(node.Left);
+
+                if (node.Right != null)
+                    stack.Push(node.Right);
             }
         }
     }
