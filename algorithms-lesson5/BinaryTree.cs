@@ -4,13 +4,13 @@ using System.Text;
 
 namespace algorithms_lesson5
 {
-    class Node<T>
+    class Node
     {
-        T data;
-        Node<T> left;
-        Node<T> right;
+        int data;
+        Node left;
+        Node right;
 
-        public Node(T value)
+        public Node(int value)
         {
             data = value;
             left = null;
@@ -19,41 +19,41 @@ namespace algorithms_lesson5
 
         public Node()
         {
-            data = default(T);
+            data = default(int);
             left = null;
             right = null;
         }
 
-        public Node(T value, Node<T> lChild, Node<T> rChild)
+        public Node(int value, Node lChild, Node rChild)
         {
             data = value;
             left = lChild;
             right = rChild;
         }
 
-        public T Data
+        public int Data
         {
             get { return data; }
             set { data = value; }
         }
 
-        public Node<T> Left
+        public Node Left
         {
             get { return left; }
             set { left = value; }
         }
 
-        public Node<T> Right
+        public Node Right
         {
             get { return right; }
             set { right = value; }
         }
     }    
 
-    class BinaryTree<T>
+    class BinaryTree
     {
-        private Node<T> root;
-        public Node<T> Root
+        private Node root;
+        public Node Root
         {
             get { return root; }
         }
@@ -63,22 +63,22 @@ namespace algorithms_lesson5
             root = null;
         }
 
-        public BinaryTree(T value)
+        public BinaryTree(int value)
         {
-            Node<T> p = new Node<T>(value);
+            Node p = new Node(value);
             root = p;
         }      
 
-        public void BFS(Node<T> root)
+        public void BFS(Node root)
         {
             if (root == null)
                 return;
 
-            Queue<Node<T>> queue = new Queue<Node<T>>();
+            Queue<Node> queue = new Queue<Node>();
             queue.Enqueue(root);
             while (queue.Count > 0)
             {
-                Node<T> node = queue.Dequeue();
+                Node node = queue.Dequeue();
                 Console.WriteLine(node.Data);
                 if (node.Left != null)
                     queue.Enqueue(node.Left);
@@ -88,16 +88,16 @@ namespace algorithms_lesson5
             }
         }
 
-        public void DFS(Node<T> root)
+        public void DFS(Node root)
         {
             if (root == null)
                 return;
 
-            Stack<Node<T>> stack = new Stack<Node<T>>();
+            Stack<Node> stack = new Stack<Node>();
             stack.Push(root);
             while(stack.Count > 0)
             {
-                Node<T> node = stack.Pop();
+                Node node = stack.Pop();
                 Console.WriteLine(node.Data);
 
                 if (node.Right != null)
