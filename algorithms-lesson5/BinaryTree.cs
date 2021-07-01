@@ -48,7 +48,7 @@ namespace algorithms_lesson5
             get { return right; }
             set { right = value; }
         }
-    }
+    }    
 
     class BinaryTree<T>
     {
@@ -67,28 +67,7 @@ namespace algorithms_lesson5
         {
             Node<T> p = new Node<T>(value);
             root = p;
-        }
-        
-        public void PrintTree()
-        {
-            if (root == null)
-                return;
-
-            Console.WriteLine(root.Data);
-
-            Queue<Node<T>> queue = new Queue<Node<T>>();
-            queue.Enqueue(root);
-            while (queue.Count > 0)
-            {
-                Node<T> node = queue.Dequeue();
-                Console.WriteLine(node.Data);
-                if (node.Left != null)
-                    queue.Enqueue(node.Left);
-
-                if (node.Right != null)
-                    queue.Enqueue(node.Right);
-            }
-        }        
+        }      
 
         public void BFS(Node<T> root)
         {
@@ -120,11 +99,11 @@ namespace algorithms_lesson5
             {
                 Node<T> node = stack.Pop();
                 Console.WriteLine(node.Data);
-                if (node.Left != null)
-                    stack.Push(node.Left);
 
                 if (node.Right != null)
                     stack.Push(node.Right);
+                if (node.Left != null)
+                    stack.Push(node.Left);                
             }
         }
     }
